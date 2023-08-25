@@ -1,0 +1,176 @@
+.navArea{
+    height: 120px;
+}
+body{
+    font-family: Montserrat, sans-serif;
+    margin: 0;
+    color:white;
+    background-color: white;
+
+}
+
+
+.imagelogo{
+    width: 15em;
+    height: 4em;
+    margin: 50px 550px;
+}
+.Endpoint-column{
+    display:flex;
+    justify-content: space-between;
+    margin:2em;
+    border: 4px solid rgb(38, 50, 56);
+    border-radius: 10px;
+    padding:10px;
+    background: rgb(38, 50, 56);;
+    width: 97vw
+}
+.submitBtn{
+    border-radius: 10px;
+    width: 5em;
+    height: 2.5em;
+    border: none;
+    background: none;
+    color: white;
+    
+}
+
+.submitBtn:hover{
+    color: black;
+    background: rgb(24, 111, 175);
+    
+    
+}
+
+.Endpoint-line{
+    width: 50em;
+    margin: 5px;
+
+}
+
+
+
+.PayloadDeco{
+    margin-top: 15px;
+    border: 2px solid black;
+    background-color: rgb(17, 23, 26);
+    max-width: 800px;
+    padding: 0px 10px 20px 20px;  
+    color: white;
+}
+.responseArea{
+    border: 2px solid rgb(38, 50, 56);
+    border-radius: 20px;
+    
+    background-color: rgb(38, 50, 56);
+
+}
+
+.accordion-button:not(.collapsed) {
+    color: var(--bs-accordion-active-color);
+    background-color: rgb(17, 23, 26);
+    box-shadow: inset 0 calc(-1 * var(--bs-accordion-border-width)) 0 var(--bs-accordion-border-color);
+    color: white;
+}
+
+.requestURL{
+    border: 2px solid black;
+
+    background-color: rgb(17, 23, 26);
+    max-width: 800px;
+    padding: 5px 20px;  
+    margin-top: 15px;  
+}
+
+.responseBody{
+    color: rgb(160, 251, 170);
+    border: 2px solid black;
+    background-color: rgb(17, 23, 26);
+    width: 700px;
+    padding: 0px 10px 20px 20px;  
+    margin-top: 2em;
+   
+ 
+}
+
+
+.EndpointSubject{
+    font-size: 1.2em;
+    padding-left: 20px;
+}
+
+.RestfulGET{
+    background-color: rgb(47, 129, 50);
+    border: 2px rgb(47, 129, 50) solid;
+    border-width: 8px;
+    font-size: 1em;
+    padding: 3px 8px;
+    border-radius: 10px;
+}
+
+.RestfulPOST{
+    background-color: rgb(24, 111, 175);
+    border: 2px rgb(24, 111, 175) solid;
+    border-width: 8px;
+    font-size: 1em;
+    padding: 3px 8px;
+    border-radius: 10px;
+}
+
+/* .testdisplay{
+    display:flex;
+    
+} */
+
+.testing-line{
+    padding: 10px 0px;
+    font-size: 1em;
+    background-color: rgb(38, 50, 56);
+
+}
+ body span{
+    background: #624cab;
+    padding: 4px 7px;
+    border-radius: 10px;
+}
+
+
+
+
+.fa-star:before {
+    content: "\f005";
+    color: red;
+    padding-left: 10px;
+}
+
+.PaymentRailTabs{
+overflow:hidden;
+
+background-color: rgb(38, 50, 56);
+}
+
+div.PaymentRailTabs button{
+    background-color: rgb(17, 23, 26);
+    float: left;
+    padding:6px 12px;
+    outline: none;
+    cursor: pointer;
+    transition: 0.3s;
+   color: rgb(177, 177, 177);
+   font-weight: 600;
+   margin: 2px 6px;
+   border-radius: 7px;
+}
+
+div.PaymentRailTabs button:hover{
+    background-color: white;
+}
+
+.tabcontents{
+    display:flex;
+    justify-content: space-between;
+    padding:6px 12px;
+    
+    border-top: none;
+}
+

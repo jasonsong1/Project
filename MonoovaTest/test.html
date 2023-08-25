@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/a091059289.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="test.css">
+    <title>Document</title>
+</head>
+
+
+<body>
+    <!-- Logo image -->
+    <nav class="navArea container">
+        <img src="/images/Monoovaimage.png" class="imagelogo">
+    </nav>
+
+    <!-- Get transaction status by UID endpoint configuration -->
+    <div>
+        <div class="Endpoint-column">
+            <div class="Endpoint-line">
+                <span class="RestfulGET">GET</span><b class="EndpointSubject">Get transaction status by UID</b>
+                <section class="requestURL">https://api.m-pay.com.au/financial/v2/status/{uniquereference}</section>
+
+
+                <div class="accordion accordion-flush mt-3" id="accordionFlushExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#flush-collapseOne" aria-expanded="false"
+                                aria-controls="flush-collapseOne">
+                                Click to Test
+                            </button>
+                        </h2>
+                        <div id="flush-collapseOne" class="accordion-collapse collapse"
+                            data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body testing-line">
+                                <div class="PayloadDeco">
+                                    <p class="mt-3"><b>API Key<i class="fa-solid fa-star"></i></b></p>
+                                    <form><input type="password" placeholder="Enter your API Key" size="50" id="GetTRXStatAPIKey"
+                                            value="0A576331-86D6-4E0F-9915-F73AD37301CD"></form>
+                                    <p class="mt-3"><b>Unique reference<i class="fa-solid fa-star"></i></b> </p>
+
+                                    <input type="text" placeholder="Enter your reference code" size="50"
+                                        id="uniqueReferenceInput">
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="TrxStatResultArea" class="mt-3 responseArea"></div>
+            <!-- sumbit button// -->
+            <div>
+                <div>
+                    <button class="submitBtn" id="statusbyUIDSubmit">Submit</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    <!-- Report endpoint
+    <div>
+        <div class="Endpoint-column">
+            <div class="Endpoint-line">
+                <span class="RestfulGET">GET</span><b class="EndpointSubject">Report</b>
+                <section class="requestURL">https://api.m-pay.com.au/receivables/v6/report/{datetime}</section>
+
+
+                <div class="accordion accordion-flush mt-3" id="accordionFlushExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#flush-collapseTwo" aria-expanded="false"
+                                aria-controls="flush-collapseTwo">
+                                Click to Test
+                            </button>
+                        </h2>
+                        <div id="flush-collapseTwo" class="accordion-collapse collapse"
+                            data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body testing-line">
+                                    <div class="PayloadDeco">
+                                <p class="mt-3"><b>API Key<i class="fa-solid fa-star"></i></b></p>
+                                <form><input type="text" placeholder="Enter your API Key" size="50" 
+                                        value="3D2726F2-CA4D-481E-BD48-551D72C41832"></form>
+                                <p class="mt-3"><b>Datetime<i class="fa-solid fa-star"></i></b> <a id="testdonwload">download</a></p>
+
+                                <input type="text" placeholder="Enter your date and time" size="50"
+                                    id="reportV6Input" value="20230728000001">
+                                </div>
+                                <div id="resultArea" class="mt-3 responseArea"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+                sumbit button//
+                <div>
+                    <div>
+                        <button class="submitBtn" id="reportV6Submit">Submit</button>
+                    </div>
+    
+                </div>
+            </div>
+        </div>
+
+
+ -->
+
+
+
+
+
+
+
+
+    <!-- List all existing webhooks configuration -->
+    <div>
+        <div class="Endpoint-column">
+            <div class="Endpoint-line">
+                <span class="RestfulGET">GET</span><b class="EndpointSubject">List all existing webhooks</b>
+                <section class="requestURL">https://api.m-pay.com.au/subscriptions/v1/list</section>
+
+
+                <div class="accordion accordion-flush mt-3" id="accordionFlushExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#flush-collapseThree" aria-expanded="false"
+                                aria-controls="flush-collapseThree">
+                                Click to Test
+                            </button>
+                        </h2>
+                        <div id="flush-collapseThree" class="accordion-collapse collapse"
+                            data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body testing-line">
+                                <div class="PayloadDeco">
+                                    <p class="mt-3"><b>API Key<i class="fa-solid fa-star"></i></b></p>
+                                    <form><input type="text" placeholder="Enter your API Key" size="50"
+                                       value="0A576331-86D6-4E0F-9915-F73AD37301CD" id="ListExWebAPIKey"></form>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <section id="AllExistingHooksResultArea" class="mt-3 responseArea"></section>
+                <section id="AllExistingHooksResultArray" class="mt-3 responseArea"></section>
+            </div>
+            <!-- sumbit button// -->
+            <div>
+                <div>
+                    <button class="submitBtn" id="GetAllWebhooksBtn">Submit</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+    <!-- Process a transaction configuration -->
+    <div>
+        <div class="Endpoint-column">
+            <div class="Endpoint-line">
+                <span class="RestfulPOST">POST</span><b class="EndpointSubject">Process a transaction</b>
+                <section class="requestURL">https://api.m-pay.com.au/financial/v2/transaction/execute</section>
+
+
+                    <!-- buttons -->
+                <div class="PaymentRailTabs mt-3">
+                    <button class="tablinks" onclick="openPayment(event, 'PayBpay')" id="defaultOpen"> Pay Bpay
+                    </button>
+                    <button class="tablinks" onclick="openPayment(event, 'DebitChildmAccount')"> Debit Child mAccount
+                    </button>
+                    <button class="tablinks" onclick="openPayment(event, 'PaymAccount')"> Pay mAccount </button>
+                    <button class="tablinks" onclick="openPayment(event, 'DirectDebit')"> Direct Debit </button>
+                    <button class="tablinks" onclick="openPayment(event, 'DirectCredit')"> Direct Credit </button>
+                    <button class="tablinks" onclick="openPayment(event, 'DirectDebitToken')"> Direct Debit (Token)
+                    </button>
+                    <button class="tablinks" onclick="openPayment(event, 'DirectCreditToken')"> Direct Credit (Token)
+                    </button>
+                    <button class="tablinks" onclick="openPayment(event, 'NPPPayBankAccount')"> NPP Pay(BankAccount)
+                    </button>
+                    <button class="tablinks" onclick="openPayment(event, 'NPPPayPayId')"> NPP Pay(PayId) </button>
+                </div>
+                <!-- button options -->
+                <div id="PayBpay" class="tabcontents">
+                    
+                </div>
+
+
+                <div id="DebitChildmAccount" class="tabcontents">
+                    
+                </div>
+
+
+                <div id="PaymAccount" class="tabcontents">
+                    
+                </div>
+
+
+                <div id="DirectDebit" class="tabcontents">
+                    
+                </div>
+
+
+                <div id="DirectCredit" class="tabcontents">
+                   
+                </div>
+
+
+                <div id="DirectDebitToken" class="tabcontenkeyts">
+                    
+                </div>
+
+
+                <div id="DirectCreditToken" class="tabcontents">
+                   
+                </div>
+
+
+                <div id="NPPPayBankAccount" class="tabcontents">
+                    <div class="PayloadDeco">
+
+
+                        <div id="NPPBankPayfields">
+                            <section>
+                                <p class="mt-3"><b>API Key</b></p>
+                                <input type="text" placeholder="Enter your API Key" size="50" id="PaymentAPIKey"
+                                    value="0A576331-86D6-4E0F-9915-F73AD37301CD">
+                            </section>
+
+                            <section>
+                                <p class="mt-3"><b>Unique reference</b> </p>
+                                <input type="text" placeholder="Enter your reference code" size="50"
+                                    id="ProcessTRXuniRef">
+                            </section>
+
+                            <!-- <p class="mt-3"><b>Total Amount</b> </p>
+                        <input type="text" placeholder=" >= 0.01" size="50"
+                            id="TotalAmount"> -->
+
+                            <section>
+                            <p class="mt-3"><b>Description</b> </p>
+                            <input type="text" placeholder="Enter your description" size="50" id="Description">
+                            </section>
+
+                            <section>
+                                <p class="mt-3"><b>Amount<i class="fa-solid fa-star"></i></b> </p>
+                                <input type="number" placeholder=">= 0.01" size="50" id="EnteredAmount">
+                            </section>
+
+                            <section>
+                                <p class="mt-3"><b>Disbursement Method<i class="fa-solid fa-star"></i></b> </p>
+                                <input type="text" size="50" value="NppCreditBankAccount" id="DisbursementMethod">
+                            </section>
+
+                            <section>
+                                <p class="mt-3"><b>BSB Number<i class="fa-solid fa-star"></i></b> </p>
+                                <input type="text" placeholder="Enter your BSB code" size="50" id="BSBNumber"
+                                    value="802-985">
+                            </section>
+
+                            <section>
+                                <p class="mt-3"><b>Account Number<i class="fa-solid fa-star"></i></b> </p>
+                                <input type="text" placeholder="Enter your Account Number" size="50" id="AccountNumber"
+                                    value="613999651">
+                            </section>
+
+                            <section>
+                                <p class="mt-3"><b>Account Name<i class="fa-solid fa-star"></i></b> </p>
+                                <input type="text" placeholder="Enter your Account Name" size="50" id="AccountName"
+                                    value="Test name">
+                            </section>
+
+                            <section>
+                                <p class="mt-3"><b>Remitter Name</b> </p>
+                                <input type="text" placeholder="Enter your Remitter" size="50" id="RemitterName"
+                                    value="Test Remitter">
+                            </section>
+
+                            <section>
+                                <p class="mt-3"><b>Lodgement Reference</b> </p>
+                                <input type="text" placeholder="Enter your Lodgement Reference" size="50"
+                                    id="LodgementReference" value="lodgementReference">
+                            </section>
+
+                            <section>
+                                <p class="mt-3"><b>End To End Id</b> </p>
+                                <input type="text" placeholder="Osko End to End identifies submitted by Payer."
+                                    size="50" id="EndToEndId">
+                            </section>
+                        </div>
+
+                    </div>
+                
+
+
+         
+            <div id="TrxIniResArea" class="mt-3 responseArea"></div>
+            <div><button class="submitBtn" id="IniPayloadSubmit">Submit</button> </div>
+        </div>
+            <!-- sumbit button// -->
+
+
+
+
+
+
+            <!-- NPPPayPayId -->
+
+
+                <div id="NPPPayPayId" class="tabcontents">
+                    <div class="PayloadDeco">
+
+
+                        <div id="PayIdfields">
+                            <section>
+                                <p class="mt-3"><b>API Key</b></p>
+                                <input type="text" placeholder="Enter your API Key" size="50" id="PayIdAPIKey"
+                                    value="0A576331-86D6-4E0F-9915-F73AD37301CD">
+                            </section>
+
+                            <section>
+                                <p class="mt-3"><b>Unique reference</b> </p>
+                                <input type="text" placeholder="Enter your reference code" size="50"
+                                    id="PayIdProcessTRXuniRef">
+                            </section>
+
+                            <!-- <p class="mt-3"><b>Total Amount</b> </p>
+                        <input type="text" placeholder=" >= 0.01" size="50"
+                            id="TotalAmount"> -->
+
+                            <section>
+                            <p class="mt-3"><b>Description</b> </p>
+                            <input type="text" placeholder="Enter your description" size="50" id="PayIdDescription">
+                            </section>
+
+                            <section>
+                                <p class="mt-3"><b>Amount<i class="fa-solid fa-star"></i></b> </p>
+                                <input type="number" placeholder=">= 0.01" size="50" id="PayIdEnteredAmount">
+                            </section>
+
+                            <section>
+                                <p class="mt-3"><b>Disbursement Method<i class="fa-solid fa-star"></i></b> </p>
+                                <input type="text" size="50" value="NppCreditPayId" id="PayIdDisbursementMethod">
+                            </section>
+
+                            <section>
+                                <p class="mt-3"><b>PayId<i class="fa-solid fa-star"></i></b> </p>
+                                <input type="text" placeholder="Enter your PayId Email" size="50" id="PayId"
+                                    >
+                            </section>
+
+                            <section>
+                                <p class="mt-3"><b>PayId Type<i class="fa-solid fa-star"></i></b> </p>
+                                <input type="text" placeholder="Enter 'Email'" size="50" id="PayIdType"
+                                    >
+                            </section>
+
+                            <section>
+                                <p class="mt-3"><b>Account Name<i class="fa-solid fa-star"></i></b> </p>
+                                <input type="text" placeholder="Enter your Account Name" size="50" id="PayIdAccountName"
+                                    value="Test name">
+                            </section>
+
+                            <section>
+                                <p class="mt-3"><b>Remitter Name</b> </p>
+                                <input type="text" placeholder="Enter your Remitter" size="50" id="PayIdRemitterName"
+                                    value="Test Remitter">
+                            </section>
+
+                            <section>
+                                <p class="mt-3"><b>Lodgement Reference</b> </p>
+                                <input type="text" placeholder="Enter your Lodgement Reference" size="50"
+                                    id="PayIdLodgementReference" value="lodgementReference">
+                            </section>
+
+                            <section>
+                                <p class="mt-3"><b>End To End Id</b> </p>
+                                <input type="text" placeholder="Osko End to End identifies submitted by Payer."
+                                    size="50" id="PayIdEndToEndId">
+                            </section>
+                        </div>
+
+                    </div>
+                
+
+
+                        <div id="TrxIniResArea" class="mt-3 responseArea"></div>
+                        <div> <button class="submitBtn" id="PayIdPayloadSubmit">Submit</button></div>
+                 </div>
+            
+
+            
+ 
+
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"
+        integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS"
+        crossorigin="anonymous"></script>
+    <script src="test.js"></script>
+</body>
+
+</html>
