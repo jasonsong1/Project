@@ -3,23 +3,14 @@ let ListofExWebhook = [];
 
 
 const GetTRXStatAPIKey = document.getElementById("GetTRXStatAPIKey");
-
-
 let uniqueReference = document.getElementById("uniqueReferenceInput");
-// let reportV6date = document.getElementById("reportV6Input");
-
-
 
 let statusbyUIDBtn = document.getElementById("statusbyUIDSubmit");
-// let reportV6Btn = document.getElementById("reportV6Submit");
+
 let GetAllWebhooksBtn = document.getElementById("GetAllWebhooksBtn")
-
-
 statusbyUIDBtn.addEventListener("click", GetTRXStatus);
-// reportV6Btn.addEventListener("click",ReportV6);
+
 GetAllWebhooksBtn.addEventListener("click",GetAllWebhooks)
-
-
 
 
 
@@ -48,7 +39,8 @@ async function GetTRXStatus() {
       let resultArea = document.getElementById("TrxStatResultArea");
       resultArea.innerHTML =    
 
-    `<div class="responseBody">
+    `
+    <div class="responseBody">
     <br>
     <div> Endpoint Response </div>
     <br>
@@ -64,39 +56,59 @@ async function GetTRXStatus() {
     <div> "uniqueReference": "${data.uniqueReference}"</div>
     <div> }</div>
     <br>
-    </div>`
+    </div>
+    `
 
 }
 
 
 
 
+// V6report
+
+let reportV6Startdate = document.getElementById("reportV6StartDate");
+let reportV6Submit = document.getElementById("reportV6Submit");
+const ReportV6APIKey = document.getElementById("ReportV6APIKey")
+let reportV6resultArea = document.getElementById("reportV6resultArea")
+let reportV6EndDate = document.getElementById("reportV6EndDate")
+
+reportV6Submit.addEventListener("click",RenderReportV6);
+
+async function ReportV6(url){
+  let response = await fetch(url,
+    {
+      method: "get",
+      headers: {
+        Authorization: "Basic " + btoa(ReportV6APIKey.value),
+            "Content-Type": "application/octet-stream"
+      },
+    }
+   )
+  .then(response => response.text())
+  .then(reportText => {
+    console.log("Report:", reportText);
+    // Handle the text/plain response here
+    reportV6resultArea.innerHTML =`<pre class="ReporV6twidth">${reportText}</pre>`
+  })
+  .catch(error => {
+    console.error("Error:", error);
+    // Handle errors here
+  });
+}
 
 
-// async function ReportV6() {
+
+function RenderReportV6() {
+if(!reportV6EndDate.value){
+  ReportV6(`${baseURL}/receivables/v6/report/${reportV6Startdate.value}`)
+}else {
+  ReportV6(`${baseURL}/receivables/v6/report/${reportV6Startdate.value}?endDate=${reportV6EndDate.value}`)
+}
+}
 
 
-//   let response = await fetch(
-//       `${baseURL}/receivables/v6/report/${reportV6date.value}`,
-//       {
-//         method: "get",
-//         headers: {
-//           Authorization: "Basic " + btoa(secretAPIKey.value),
-//               "Content-Type": "text/plain"
 
-//         },
-//       }
-//      )
-//     .then(response => response.text())
-//     .then(reportText => {
-//       console.log("Report:", reportText);
-//       // Handle the text/plain response here
-//     })
-//     .catch(error => {
-//       console.error("Error:", error);
-//       // Handle errors here
-//     });
-//   }
+
 
 
 
@@ -112,10 +124,10 @@ async function GetTRXStatus() {
 const ListExWebAPIKey = document.getElementById("ListExWebAPIKey")
 async function GetAllWebhooks() {
 
-  if (!uniqueReference.value){
-    alert("Enter your API Key.")
-   return
- }
+//   if (!uniqueReference.value){
+//     alert("Enter your API Key.")
+//    return
+//  }
 
     let res = await fetch(
       `${baseURL}/subscriptions/v1/list`,
@@ -140,7 +152,7 @@ async function GetAllWebhooks() {
       <div> Endpoint Response </div>
 
       <div>"statusDescription": ${data.statusDescription}, </div>
-      <div>"eventName": [</div>
+      <div>"eventName": [</div><br>
       </div>`
 
 
@@ -157,8 +169,8 @@ async function GetAllWebhooks() {
         <div>"lastUpdated": ${Existinghooks.lastUpdated}, </div>
         <div><span>"status": ${Existinghooks.status},</span> </div>
         <div><span>"targetUrl": ${Existinghooks.targetUrl},</span> </div>
-        <div>{</div></div>
-        <br>
+        <div>{<br></div><br></div>
+        
         `
       }).join('')
 }
@@ -222,6 +234,7 @@ let IniPayloadSubmit = document.getElementById("IniPayloadSubmit")
 
 
 function NppCreditBankAccountVariables(){
+  // const PaymentAPIKey = document.getElementById("PaymentAPIKey")
   let NPPBankPayfields = document.querySelector('#NPPBankPayfields')
   let AllNPPBankPayfields = NPPBankPayfields.querySelectorAll("section")
 
@@ -243,13 +256,13 @@ EnteredAmountValue =EnteredAmount.value
 
 
 // Click event
-IniPayloadSubmit.addEventListener("click",Inipayload)
+IniPayloadSubmit.addEventListener("click",RenderNPPPayment)
 
 
 
 
 // Payment NPP Bank
-function Inipayload(){
+function RenderNPPPayment(){
   NppCreditBankAccountVariables()
 
 
@@ -321,7 +334,7 @@ const NppPayBankAccountPayLoadJSON = JSON.stringify(NppPayBankAccountPayLoad);
   <div> "feeAmountIncludingGst": ${result.feeAmountIncludingGst},</div>
   <div> <span>"callerUniqueReference": ${result.callerUniqueReference},</div></span>
 
-  <div> }</div>
+  <div> }</div><br>
   </div>`
   })
 
@@ -334,11 +347,14 @@ const NppPayBankAccountPayLoadJSON = JSON.stringify(NppPayBankAccountPayLoad);
 
 
 
-// POST PayID transaction Function
 
+
+
+// POST PayID transaction Function
+// const PayIdAPIKey = document.getElementById("PayIdAPIKey")
 let PayIdPayloadSubmit = document.getElementById("PayIdPayloadSubmit")
 
-PayIdPayloadSubmit.addEventListener("click",NppCreditPayIdPayload)
+PayIdPayloadSubmit.addEventListener("click",RenderPayIDPayment)
 
 function NppCreditPayIdVariables(){
   let PayIdfields = document.querySelector('#PayIdfields')
@@ -359,11 +375,11 @@ PayIdTypeValue =PayIdType.value
 
 
 
-function NppCreditPayIdPayload(){
+function RenderPayIDPayment(){
   NppCreditPayIdVariables()
 
 
-  let NppPayBankAccountPayLoad ={
+  let PayIDPayLoad ={
   disbursements: [
   {
      disbursementMethod: PayIdDisbursementMethodValue,
@@ -380,7 +396,7 @@ function NppCreditPayIdPayload(){
         ]
         };
 
-console.log(NppPayBankAccountPayLoad)
+
 
 
   if (!PayIdEnteredAmountValue){
@@ -394,7 +410,7 @@ console.log(NppPayBankAccountPayLoad)
   return
 }
 
-const NppCreditPayIdPayloadJSON = JSON.stringify(NppCreditPayIdPayload);
+const NppCreditPayIdPayloadJSON = JSON.stringify(PayIDPayLoad);
   fetch(`${baseURL}/financial/v2/transaction/execute`, {
   method: "POST",
   headers: {
@@ -410,7 +426,7 @@ const NppCreditPayIdPayloadJSON = JSON.stringify(NppCreditPayIdPayload);
   .then(result => {
     console.log("API response:", result);
     // Handle the response from the API here
-    let resultIniArea = document.getElementById("TrxIniResArea");
+    let resultIniArea = document.getElementById("payidIniResArea");
   resultIniArea.innerHTML =    
 
 `
@@ -428,10 +444,413 @@ const NppCreditPayIdPayloadJSON = JSON.stringify(NppCreditPayIdPayload);
   <div> "feeAmountIncludingGst": ${result.feeAmountIncludingGst},</div>
   <div> <span>"callerUniqueReference": ${result.callerUniqueReference},</div></span>
 
-  <div> }</div>
+  <div> }</div><br>
   </div>`
   })
 
 }
 
 
+
+
+
+
+
+
+
+//Direct Debit Initiation
+
+
+let DirectDebitPayloadSubmit = document.getElementById("DirectDebitPayloadSubmit")
+
+DirectDebitPayloadSubmit.addEventListener("click",RenderDirectDebitPayment)
+
+function DirectDebitVariables(){
+  let PayIdfields = document.querySelector('#PayIdfields')
+  let AllPayIdfields = PayIdfields.querySelectorAll("section")
+
+
+DirectDebitProcessTRXuniRefValue =DirectDebitProcessTRXuniRef.value//
+DirectDebitDescriptionValue =DirectDebitDescription.value//
+DirectDebitAccountNameValue =DirectDebitAccountName.value//
+DirectDebitLodgementReferenceValue =DirectDebitLodgementReference.value//
+DirectDebitEnteredAmountValue =DirectDebitEnteredAmount.value//
+DirectDebitDisbursementMethodValue = DirectDebitDisbursementMethod.value//
+DirectDebitBSBNumberValue =DirectDebitBSBNumber.value//
+DirectDebitAccountNumberValue=DirectDebitAccountNumber.value//
+
+}
+
+
+
+function RenderDirectDebitPayment(){
+  DirectDebitVariables()
+
+
+  let DirectDebitPayLoad ={
+    
+        uniqueReference: DirectDebitProcessTRXuniRefValue,
+        totalAmount: DirectDebitEnteredAmountValue,
+        paymentSource: DirectDebitDisbursementMethodValue,
+        lodgementReference:DirectDebitLodgementReferenceValue,
+      directDebit: {
+              bsbNumber: DirectDebitBSBNumberValue,
+              accountNumber: DirectDebitAccountNumberValue,
+              accountName: DirectDebitAccountNameValue,
+              lodgementReference: DirectDebitLodgementReferenceValue
+                   }
+    };
+
+
+
+
+  if (!DirectDebitEnteredAmountValue){
+    alert("Do not leave amount empty.")
+ }else if(!DirectDebitDisbursementMethodValue){
+   alert("Do not leave payment source fields empty.")
+ }else if(!DirectDebitBSBNumberValue){
+  alert("Do not leave BSB number fields empty.")
+}else if(!DirectDebitAccountNumberValue){
+  alert("Do not leave account number fields empty.")
+  return
+}
+
+const DirectDebitPayLoadPayloadJSON = JSON.stringify(DirectDebitPayLoad);
+  fetch(`${baseURL}/financial/v2/transaction/execute`, {
+  method: "POST",
+  headers: {
+    Authorization: "Basic " + btoa(DirectDebitAPIKey.value),
+    "Content-Type": "application/json",
+    
+
+  },
+  body: DirectDebitPayLoadPayloadJSON
+  
+})
+  .then(response => response.json())
+  .then(result => {
+    console.log("API response:", result);
+    // Handle the response from the API here
+    let resultIniArea = document.getElementById("DirectDebitIniResArea");
+  resultIniArea.innerHTML =    
+
+`
+<div class="responseBody">
+<br>
+<div> Endpoint Response </div>
+<br>
+<div>{</div>
+  <div>"durationMs": ${result.durationMs},</div>
+  <div> <span>"status": ${result.status},</div></span>
+  <div> <span>"statusDescription": ${result.statusDescription},</div></span>
+  <div> <span> "transactionId": ${result.transactionId},</div></span>
+  <div> "feeAmountExcludingGst": ${result.feeAmountExcludingGst},</div>
+  <div> "feeAmountGstComponent": ${result.feeAmountGstComponent},</div>
+  <div> "feeAmountIncludingGst": ${result.feeAmountIncludingGst},</div>
+  <div> <span>"callerUniqueReference": ${result.callerUniqueReference},</div></span>
+
+  <div> }</div><br>
+  </div>`
+  })
+
+}
+
+
+
+
+
+
+//create Automatcher
+let CreateAutomatcherPayloadSubmit = document.getElementById("CreateAutomatcherPayloadSubmit")
+
+CreateAutomatcherPayloadSubmit.addEventListener("click",RenderCreateAutomatcher)
+
+
+function CreateAutomatcherVariables(){
+
+  let CreateAutomatcherfields = document.querySelector('#CreateAutomatcherfields')
+  let AllCreateAutomatcherfields = CreateAutomatcherfields.querySelectorAll("section")
+
+  CreateAutomatcherAPIKeyValue =CreateAutomatcherAPIKey.value
+  CreateAutomatcherACNameValue =CreateAutomatcherACName.value
+  CreateAutomatcherUniqIDValue =CreateAutomatcherUniqID.value
+  CreateAutomatcherstatusValue =CreateAutomatcherstatus.value
+
+
+}
+
+
+
+function RenderCreateAutomatcher(){
+  CreateAutomatcherVariables()
+
+
+  let CreateAutomatcherPayLoad ={
+      bankAccountName: CreateAutomatcherACNameValue,
+      clientUniqueId: CreateAutomatcherUniqIDValue,
+      isActive: CreateAutomatcherstatusValue
+    
+    };
+
+
+
+
+  if (!CreateAutomatcherACNameValue){
+    alert("Do not leave account name fields empty")
+  return
+}
+
+
+  fetch(`${baseURL}/receivables/v1/create`, {
+  method: "POST",
+  headers: {
+    Authorization: "Basic " + btoa(CreateAutomatcherAPIKey.value),
+    "Content-Type": "application/json",
+    
+
+  },
+  body: JSON.stringify(CreateAutomatcherPayLoad)
+  
+})
+  .then(response => response.json())
+  .then(result => {
+    console.log("API response:", result);
+    // Handle the response from the API here
+    let resultIniArea = document.getElementById("CreateAutomatcherResultArea");
+  resultIniArea.innerHTML =    
+
+`
+<div class="responseBody">
+<br>
+<div> Endpoint Response </div>
+<br>
+<div>{</div>
+<div>"durationMs": ${result.durationMs},</div>
+<div>"status": ${result.status},</div>
+<div> <span>"status Description": ${result.statusDescription},</div></span>
+<div> <span>"bsb": ${result.bsb},</div></span>
+<div> <span>"bank Account Number": ${result.bankAccountNumber},</div></span>
+<div> <span>"bank Account Name": ${result.bankAccountName},</div></span>
+  <div> <span>"client UniqueId": ${result.clientUniqueId},</div></span>
+  <div> <span>"isActive": ${result.isActive},</div></span>
+<div>}</div><br>
+`
+  })
+
+}
+
+
+
+
+//Set Account Status
+let SetACStatusPayloadSubmit = document.getElementById("SetACStatusPayloadSubmit")
+
+SetACStatusPayloadSubmit.addEventListener("click",RenderSetACStatus)
+
+
+function SetACStatusVariables(){
+
+  let SetACStatusfields = document.querySelector('#SetACStatusfields')
+  let AllSetACStatusfields = SetACStatusfields.querySelectorAll("section")
+
+  SetACStatusAPIKeyValue =SetACStatusAPIKey.value
+  SetACStatusUniqIDValue =SetACStatusUniqID.value
+  SetACStatusValue =SetACStatus.value
+  SetACStatusACNumberValue=SetACStatusACNumber.value
+
+}
+
+
+
+function RenderSetACStatus(){
+  SetACStatusVariables()
+
+
+  let SetACStatusPayLoad ={
+      
+      bankAccountNumber     : SetACStatusACNumberValue,
+      clientUniqueId: SetACStatusUniqIDValue,
+      isActive: SetACStatusValue
+    
+    };
+
+
+
+
+  if (!SetACStatusUniqIDValue){
+    alert("Do not leave Unique ID empty")}
+    else if(!SetACStatusACNumberValue){
+      alert("Do not leave account number empty")}
+      else if(!SetACStatusValue){
+        alert("Do not leave account status empty")
+        return
+      }
+  
+
+
+
+  fetch(`${baseURL}/receivables/v1/status`, {
+  method: "POST",
+  headers: {
+    Authorization: "Basic " + btoa(SetACStatusAPIKey.value),
+    "Content-Type": "application/json",
+    
+
+  },
+  body: JSON.stringify(SetACStatusPayLoad)
+  
+})
+  .then(response => response.json())
+  .then(result => {
+    console.log("API response:", result);
+    // Handle the response from the API here
+    let resultIniArea = document.getElementById("SetACStatusResultArea");
+  resultIniArea.innerHTML =    
+
+`
+<div class="responseBody">
+<br>
+<div> Endpoint Response </div>
+<br>
+<div>{</div>
+<div>"durationMs": ${result.durationMs},</div>
+<div>"status": ${result.status},</div>
+<div> <span>"status Description": ${result.statusDescription},</div></span>
+<div> <span>"bsb": ${result.bsb},</div></span>
+<div> <span>"bank Account Number": ${result.bankAccountNumber},</div></span>
+<div> <span>"bank Account Name": ${result.bankAccountName},</div></span>
+  <div> <span>"client UniqueId": ${result.clientUniqueId},</div></span>
+  <div> <span>"isActive": ${result.isActive},</div></span>
+<div>}</div><br>
+`
+  })
+
+}
+
+
+
+
+
+
+// Get Account Status By BankAccount
+
+let GetACStatbyACResultArea = document.getElementById("GetACStatbyACResultArea")
+let GetACStatbyACSubmit = document.getElementById("GetACStatbyACSubmit")
+
+
+GetACStatbyACSubmit.addEventListener("click",renderGetACStatbyAC)
+
+
+
+
+
+
+async function renderGetACStatbyAC() {
+  const GetACStatbyACAPIKey = document.getElementById("GetACStatbyACAPIKey")
+  const GetACStatbyACNumber = document.getElementById("GetACStatbyACNumber")
+
+//   if (!GetACStatbyACAPIKey.value){
+//    alert("Do not leave API key empty.")
+    
+// }else if(!GetACStatbyACNumber.value){
+//   alert("Enter your account number.")
+//   return
+// }
+
+    let response = await fetch(
+      `${baseURL}/receivables/v1/statusByBankAccount/${GetACStatbyACNumber.value}`,
+      {
+        method: "get",
+        headers: {
+          Authorization: "Basic " + btoa(GetACStatbyACAPIKey.value),
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    let data = await response.json();
+      console.log("this is data", data)
+      let resultArea = document.getElementById("GetACStatbyACResultArea");
+      resultArea.innerHTML =    
+
+    `
+    <div class="responseBody">
+    <br>
+    <div> Endpoint Response </div>
+    <br>
+    <div>{</div>
+    <div>"durationMs": ${data.durationMs},</div>
+    <div>"status": "${data.status}",</div>
+    <div>"statusDescription": "${data.statusDescription}",</div>
+    <div><span>"BSB": "${data.bsb}",</span></div>
+    <div><span>"Bank Account Number": ${data.bankAccountNumber},</span></div>
+    <div><span>"Bank Account Name": ${data.bankAccountName},</span></div>
+    <div><span>"Client Unique Id": ${data.clientUniqueId},</span></div>
+    <div> <span> "isActive": "${data.isActive}",</span></div>
+    <div> }</div>
+    <br>
+    </div>
+    `
+
+}
+
+
+
+// Get Account Status By ClientUniqueId
+
+let GetACStatbyUniqueIDResultArea = document.getElementById("GetACStatbyUniqueIDResultArea")
+let GetACStatbyUniqueIDSubmit = document.getElementById("GetACStatbyUniqueIDSubmit")
+
+
+GetACStatbyUniqueIDSubmit.addEventListener("click",renderGetACStatbyUniqueID)
+
+
+
+
+
+
+async function renderGetACStatbyUniqueID() {
+  const GetACStatbyUniqueIDAPIKey = document.getElementById("GetACStatbyUniqueIDAPIKey")
+  const GetACStatbyUniqueIDNumber = document.getElementById("GetACStatbyUniqueIDNumber")
+
+//   if (!GetACStatbyUniqueIDAPIKey.value){
+//    alert("Do not leave API key empty.")
+    
+// }else if(!GetACStatbyUniqueIDNumber.value){
+//   alert("Enter your account number.")
+//   return
+// }
+
+    let response = await fetch(
+      `${baseURL}/receivables/v1/statusByClientID/${GetACStatbyUniqueIDNumber.value}`,
+      {
+        method: "get",
+        headers: {
+          Authorization: "Basic " + btoa(GetACStatbyUniqueIDAPIKey.value),
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    let data = await response.json();
+      console.log("this is data", data)
+      let resultArea = document.getElementById("GetACStatbyUniqueIDResultArea");
+      resultArea.innerHTML =    
+
+    `
+    <div class="responseBody">
+    <br>
+    <div> Endpoint Response </div>
+    <br>
+    <div>{</div>
+    <div>"durationMs": ${data.durationMs},</div>
+    <div>"status": "${data.status}",</div>
+    <div>"statusDescription": "${data.statusDescription}",</div>
+    <div><span>"BSB": "${data.bsb}",</span></div>
+    <div><span>"Bank Account Number": ${data.bankAccountNumber},</span></div>
+    <div><span>"Bank Account Name": ${data.bankAccountName},</span></div>
+    <div><span>"Client Unique Id": ${data.clientUniqueId},</span></div>
+    <div> <span> "isActive": "${data.isActive}",</span></div>
+    <div> }</div>
+    <br>
+    </div>
+    `
+}

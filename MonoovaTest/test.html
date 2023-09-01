@@ -13,6 +13,9 @@
 
 
 <body>
+
+
+
     <!-- Logo image -->
     <nav class="navArea container">
         <img src="/images/Monoovaimage.png" class="imagelogo">
@@ -40,8 +43,8 @@
                             <div class="accordion-body testing-line">
                                 <div class="PayloadDeco">
                                     <p class="mt-3"><b>API Key<i class="fa-solid fa-star"></i></b></p>
-                                    <form><input type="password" placeholder="Enter your API Key" size="50" id="GetTRXStatAPIKey"
-                                            value="0A576331-86D6-4E0F-9915-F73AD37301CD"></form>
+                                    <form><input type="password" placeholder="Enter your API Key" size="50"
+                                            id="GetTRXStatAPIKey" value="0A576331-86D6-4E0F-9915-F73AD37301CD"></form>
                                     <p class="mt-3"><b>Unique reference<i class="fa-solid fa-star"></i></b> </p>
 
                                     <input type="text" placeholder="Enter your reference code" size="50"
@@ -69,7 +72,7 @@
 
 
 
-    <!-- Report endpoint
+    <!-- V6 Report endpoint -->
     <div>
         <div class="Endpoint-column">
             <div class="Endpoint-line">
@@ -89,34 +92,43 @@
                         <div id="flush-collapseTwo" class="accordion-collapse collapse"
                             data-bs-parent="#accordionFlushExample">
                             <div class="accordion-body testing-line">
-                                    <div class="PayloadDeco">
-                                <p class="mt-3"><b>API Key<i class="fa-solid fa-star"></i></b></p>
-                                <form><input type="text" placeholder="Enter your API Key" size="50" 
-                                        value="3D2726F2-CA4D-481E-BD48-551D72C41832"></form>
-                                <p class="mt-3"><b>Datetime<i class="fa-solid fa-star"></i></b> <a id="testdonwload">download</a></p>
 
-                                <input type="text" placeholder="Enter your date and time" size="50"
-                                    id="reportV6Input" value="20230728000001">
+                                <div class="PayloadDeco">
+
+                                    <p class="mt-3"><b>API Key<i class="fa-solid fa-star"></i></b></p>
+                                    <form><input type="text" placeholder="Enter your API Key" size="50"
+                                            value="0A576331-86D6-4E0F-9915-F73AD37301CD" id="ReportV6APIKey"></form>
+
+
+                                    <p class="mt-3"><b>Start Date<i class="fa-solid fa-star"></i></b></p>
+
+                                    <input type="text" placeholder="Enter your date and time" size="50"
+                                        id="reportV6StartDate" value="20230701000001">
+
+                                        <p class="mt-3"><b>End Date</b></p>
+
+                                        <input type="text" placeholder="Enter your date and time" size="50"
+                                            id="reportV6EndDate" value="20230730000001">
                                 </div>
-                                <div id="resultArea" class="mt-3 responseArea"></div>
+                                <div id="reportV6resultArea" class="mt-3 responseArea ReporV6twidth"></div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-                sumbit button//
+            
+            <!-- sumbit button// -->
+            <div>
                 <div>
-                    <div>
-                        <button class="submitBtn" id="reportV6Submit">Submit</button>
-                    </div>
-    
+                    <button class="submitBtn" id="reportV6Submit">Submit</button>
                 </div>
+
             </div>
         </div>
+    </div>
 
 
- -->
+
 
 
 
@@ -148,7 +160,7 @@
                                 <div class="PayloadDeco">
                                     <p class="mt-3"><b>API Key<i class="fa-solid fa-star"></i></b></p>
                                     <form><input type="text" placeholder="Enter your API Key" size="50"
-                                       value="0A576331-86D6-4E0F-9915-F73AD37301CD" id="ListExWebAPIKey"></form>
+                                            value="0A576331-86D6-4E0F-9915-F73AD37301CD" id="ListExWebAPIKey"></form>
                                 </div>
 
                             </div>
@@ -186,7 +198,7 @@
                 <section class="requestURL">https://api.m-pay.com.au/financial/v2/transaction/execute</section>
 
 
-                    <!-- buttons -->
+                <!-- buttons -->
                 <div class="PaymentRailTabs mt-3">
                     <button class="tablinks" onclick="openPayment(event, 'PayBpay')" id="defaultOpen"> Pay Bpay
                     </button>
@@ -195,48 +207,138 @@
                     <button class="tablinks" onclick="openPayment(event, 'PaymAccount')"> Pay mAccount </button>
                     <button class="tablinks" onclick="openPayment(event, 'DirectDebit')"> Direct Debit </button>
                     <button class="tablinks" onclick="openPayment(event, 'DirectCredit')"> Direct Credit </button>
-                    <button class="tablinks" onclick="openPayment(event, 'DirectDebitToken')"> Direct Debit (Token)
-                    </button>
-                    <button class="tablinks" onclick="openPayment(event, 'DirectCreditToken')"> Direct Credit (Token)
-                    </button>
-                    <button class="tablinks" onclick="openPayment(event, 'NPPPayBankAccount')"> NPP Pay(BankAccount)
-                    </button>
+                    <button class="tablinks" onclick="openPayment(event, 'DirectDebitToken')"> Direct Debit
+                        (Token)</button>
+                    <button class="tablinks" onclick="openPayment(event, 'DirectCreditToken')"> Direct Credit
+                        (Token)</button>
+                    <button class="tablinks" onclick="openPayment(event, 'NPPPayBankAccount')"> NPP
+                        Pay(BankAccount)</button>
                     <button class="tablinks" onclick="openPayment(event, 'NPPPayPayId')"> NPP Pay(PayId) </button>
                 </div>
                 <!-- button options -->
                 <div id="PayBpay" class="tabcontents">
-                    
+
                 </div>
 
 
                 <div id="DebitChildmAccount" class="tabcontents">
-                    
+
                 </div>
 
 
                 <div id="PaymAccount" class="tabcontents">
-                    
+
                 </div>
 
 
+
+
+
+
+
+                <!-- Direct Debit -->
                 <div id="DirectDebit" class="tabcontents">
-                    
+
+
+
+                    <div class="PayloadDeco">
+
+
+                        <div id="PayIdfields">
+                            <section>
+                                <p class="mt-3"><b>API Key</b></p>
+                                <input type="text" placeholder="Enter your API Key" size="50" id="DirectDebitAPIKey"
+                                    value="0A576331-86D6-4E0F-9915-F73AD37301CD">
+                            </section>
+
+                            <section>
+                                <p class="mt-3"><b>Unique reference</b> </p>
+                                <input type="text" placeholder="Enter your reference code" size="50"
+                                    id="DirectDebitProcessTRXuniRef">
+                            </section>
+
+                            <!-- <p class="mt-3"><b>Total Amount</b> </p>
+                        <input type="text" placeholder=" >= 0.01" size="50"
+                            id="TotalAmount"> -->
+
+                            <section>
+                                <p class="mt-3"><b>Description</b> </p>
+                                <input type="text" placeholder="Enter your description" size="50"
+                                    id="DirectDebitDescription">
+                            </section>
+
+                            <section>
+                                <p class="mt-3"><b>Total Amount<i class="fa-solid fa-star"></i></b> </p>
+                                <input type="number" placeholder=">= 0.01" size="50" id="DirectDebitEnteredAmount">
+                            </section>
+
+                            <section>
+                                <p class="mt-3"><b>Payment Source<i class="fa-solid fa-star"></i></b> </p>
+                                <input type="text" size="50" value="directDebit" id="DirectDebitDisbursementMethod">
+                            </section>
+
+                            <section>
+                                <p class="mt-3"><b>BSB Number<i class="fa-solid fa-star"></i></b> </p>
+                                <input type="text" placeholder="Enter your BSB code" size="50" id="DirectDebitBSBNumber"
+                                    value="802-985">
+                            </section>
+
+                            <section>
+                                <p class="mt-3"><b>Account Number<i class="fa-solid fa-star"></i></b> </p>
+                                <input type="text" placeholder="Enter your Account Number" size="50"
+                                    id="DirectDebitAccountNumber" value="613999651">
+                            </section>
+
+                            <section>
+                                <p class="mt-3"><b>Account Name<i class="fa-solid fa-star"></i></b> </p>
+                                <input type="text" placeholder="Enter your Account Name" size="50"
+                                    id="DirectDebitAccountName" value="Test name">
+                            </section>
+
+                            <section>
+                                <p class="mt-3"><b>Lodgement Reference</b> </p>
+                                <input type="text" placeholder="Enter your Lodgement Reference" size="50"
+                                    id="DirectDebitLodgementReference">
+                            </section>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div id="DirectDebitIniResArea" class="mt-3 responseArea"></div>
+                    <div> <button class="submitBtn" id="DirectDebitPayloadSubmit">Submit</button></div>
                 </div>
+
+
+
+
+
+
+
 
 
                 <div id="DirectCredit" class="tabcontents">
-                   
+
                 </div>
 
 
                 <div id="DirectDebitToken" class="tabcontenkeyts">
-                    
+
                 </div>
 
 
                 <div id="DirectCreditToken" class="tabcontents">
-                   
+
                 </div>
+
+
+
+
+
+
+
 
 
                 <div id="NPPPayBankAccount" class="tabcontents">
@@ -261,8 +363,8 @@
                             id="TotalAmount"> -->
 
                             <section>
-                            <p class="mt-3"><b>Description</b> </p>
-                            <input type="text" placeholder="Enter your description" size="50" id="Description">
+                                <p class="mt-3"><b>Description</b> </p>
+                                <input type="text" placeholder="Enter your description" size="50" id="Description">
                             </section>
 
                             <section>
@@ -313,21 +415,21 @@
                         </div>
 
                     </div>
-                
-
-
-         
-            <div id="TrxIniResArea" class="mt-3 responseArea"></div>
-            <div><button class="submitBtn" id="IniPayloadSubmit">Submit</button> </div>
-        </div>
-            <!-- sumbit button// -->
 
 
 
 
+                    <div id="TrxIniResArea" class="mt-3 responseArea"></div>
+                    <div><button class="submitBtn" id="IniPayloadSubmit">Submit</button> </div>
+                </div>
+                <!-- sumbit button// -->
 
 
-            <!-- NPPPayPayId -->
+
+
+
+
+                <!-- NPPPayPayId -->
 
 
                 <div id="NPPPayPayId" class="tabcontents">
@@ -352,8 +454,8 @@
                             id="TotalAmount"> -->
 
                             <section>
-                            <p class="mt-3"><b>Description</b> </p>
-                            <input type="text" placeholder="Enter your description" size="50" id="PayIdDescription">
+                                <p class="mt-3"><b>Description</b> </p>
+                                <input type="text" placeholder="Enter your description" size="50" id="PayIdDescription">
                             </section>
 
                             <section>
@@ -368,14 +470,12 @@
 
                             <section>
                                 <p class="mt-3"><b>PayId<i class="fa-solid fa-star"></i></b> </p>
-                                <input type="text" placeholder="Enter your PayId Email" size="50" id="PayId"
-                                    >
+                                <input type="text" placeholder="Enter your PayId Email" size="50" id="PayId">
                             </section>
 
                             <section>
                                 <p class="mt-3"><b>PayId Type<i class="fa-solid fa-star"></i></b> </p>
-                                <input type="text" placeholder="Enter 'Email'" size="50" id="PayIdType"
-                                    >
+                                <input type="text" placeholder="Enter 'Email'" size="50" id="PayIdType" value="Email">
                             </section>
 
                             <section>
@@ -404,30 +504,305 @@
                         </div>
 
                     </div>
-                
 
 
-                        <div id="TrxIniResArea" class="mt-3 responseArea"></div>
-                        <div> <button class="submitBtn" id="PayIdPayloadSubmit">Submit</button></div>
-                 </div>
-            
 
-            
- 
-
+                    <div id="payidIniResArea" class="mt-3 responseArea"></div>
+                    <div> <button class="submitBtn" id="PayIdPayloadSubmit">Submit</button></div>
+                </div>
+            </div>
+        </div>
 
 
 
 
+        <!-- Create Automatcher -->
+
+        <div>
+            <div class="Endpoint-column">
+                <div class="Endpoint-line">
+                    <span class="RestfulPOST">POST</span><b class="EndpointSubject">Create a Automatcher Account</b>
+                    <section class="requestURL">https://api.m-pay.com.au/receivables/v1/create</section>
 
 
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"
-        integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS"
-        crossorigin="anonymous"></script>
-    <script src="test.js"></script>
+                    <div class="accordion accordion-flush mt-3" id="accordionFlushExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#flush-collapseFour" aria-expanded="false"
+                                    aria-controls="flush-collapseFour">
+                                    Click to Test
+                                </button>
+                            </h2>
+                            <div id="flush-collapseFour" class="accordion-collapse collapse"
+                                data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body testing-line">
+                                    <div class="PayloadDeco" id="CreateAutomatcherfields">
+
+                                        <section>
+                                            <p class="mt-3"><b>API Key<i class="fa-solid fa-star"></i></b></p>
+                                            <form><input type="password" placeholder="Enter your API Key" size="50"
+                                                    id="CreateAutomatcherAPIKey"
+                                                    value="0A576331-86D6-4E0F-9915-F73AD37301CD"></form>
+                                        </section>
+
+
+                                        <section>
+                                            <p class="mt-3"><b>Bank Account Name<i class="fa-solid fa-star"></i></b>
+                                            </p>
+                                            <input type="text" placeholder="Enter your reference code" size="50"
+                                                id="CreateAutomatcherACName">
+                                        </section>
+
+
+                                        <section>
+                                            <p class="mt-3"><b>Client Unique ID(Optional)</b> </p>
+                                            <input type="text" placeholder="Enter your reference code" size="50"
+                                                id="CreateAutomatcherUniqID">
+                                        </section>
+
+
+                                        <section>
+                                            <p class="mt-3"><b>IsActive</b> </p>
+                                            <input type="text" placeholder="Enter your reference code" size="50"
+                                                id="CreateAutomatcherstatus">
+                                        </section>
+
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="CreateAutomatcherResultArea" class="mt-3 responseArea"></div>
+                <!-- sumbit button// -->
+                <div>
+                    <div>
+                        <button class="submitBtn" id="CreateAutomatcherPayloadSubmit">Submit</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+        <!-- Set Account Status -->
+
+        <div>
+            <div class="Endpoint-column">
+                <div class="Endpoint-line">
+                    <span class="RestfulPOST">POST</span><b class="EndpointSubject">Set Account Status</b>
+                    <section class="requestURL">https://api.m-pay.com.au/receivables/v1/status</section>
+
+
+                    <div class="accordion accordion-flush mt-3" id="accordionFlushExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#flush-Five" aria-expanded="false" aria-controls="flush-Five">
+                                    Click to Test
+                                </button>
+                            </h2>
+                            <div id="flush-Five" class="accordion-collapse collapse"
+                                data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body testing-line">
+                                    <div class="PayloadDeco" id="SetACStatusfields">
+
+                                        <section>
+                                            <p class="mt-3"><b>API Key<i class="fa-solid fa-star"></i></b></p>
+                                            <form><input type="password" placeholder="Enter your API Key" size="50"
+                                                    id="SetACStatusAPIKey" value="0A576331-86D6-4E0F-9915-F73AD37301CD">
+                                            </form>
+                                        </section>
+
+                                        <section>
+                                            <p class="mt-3"><b>Account number</b> <i class="fa-solid fa-star"></i></p>
+                                            <input type="text" placeholder="Enter your Account number code" size="50"
+                                                id="SetACStatusACNumber">
+                                        </section>
+
+
+                                        <section>
+                                            <p class="mt-3"><b>Client Unique ID<i class="fa-solid fa-star"></i></b> </p>
+                                            <input type="text" placeholder="Enter your unique reference" size="50"
+                                                id="SetACStatusUniqID">
+                                        </section>
+
+
+                                        <section>
+                                            <p class="mt-3"><b>IsActive</b> </p>
+                                            <input type="text" placeholder="Enter your status code" size="50"
+                                                id="SetACStatus">
+                                        </section>
+
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="SetACStatusResultArea" class="mt-3 responseArea"></div>
+                <!-- sumbit button// -->
+                <div>
+                    <div>
+                        <button class="submitBtn" id="SetACStatusPayloadSubmit">Submit</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+        <!-- Get Account Status By BankAccount -->
+        <div>
+            <div class="Endpoint-column">
+                <div class="Endpoint-line">
+                    <span class="RestfulGET">GET</span><b class="EndpointSubject">Get Account Status By BankAccount</b>
+                    <section class="requestURL">
+                        https://api.m-pay.com.au/receivables/v1/statusByBankAccount/{bankAccountNumber}</section>
+
+
+                    <div class="accordion accordion-flush mt-3" id="accordionFlushExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#flush-Six" aria-expanded="false" aria-controls="flush-Six">
+                                    Click to Test
+                                </button>
+                            </h2>
+                            <div id="flush-Six" class="accordion-collapse collapse"
+                                data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body testing-line">
+
+                                    <div class="PayloadDeco" id="GetACStatbyACfields">
+
+                                        <section>
+                                            <p class="mt-3"><b>API Key<i class="fa-solid fa-star"></i></b></p>
+                                            <form><input type="password" placeholder="Enter your API Key" size="50"
+                                                    id="GetACStatbyACAPIKey"
+                                                    value="0A576331-86D6-4E0F-9915-F73AD37301CD"></form>
+                                        </section>
+
+
+                                        <section>
+                                            <p class="mt-3"><b>Bank Account Number<i class="fa-solid fa-star"></i></b>
+                                            </p>
+
+                                            <input type="text" placeholder="Enter your Bank Account number"
+                                                value="917841815" size="50" id="GetACStatbyACNumber">
+                                        </section>
+
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-3 responseArea" id="GetACStatbyACResultArea"></div>
+                <!-- sumbit button// -->
+                <div>
+                    <div>
+                        <button class="submitBtn" id="GetACStatbyACSubmit">Submit</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+        <!-- Get Account Status By ClientUniqueId -->
+        <div>
+            <div class="Endpoint-column">
+                <div class="Endpoint-line">
+                    <span class="RestfulGET">GET</span><b class="EndpointSubject">Get Account Status By Client
+                        UniqueId</b>
+                    <section class="requestURL">
+                        https://api.m-pay.com.au/receivables/v1/statusByClientID/{clientUniqueId}</section>
+
+
+                    <div class="accordion accordion-flush mt-3" id="accordionFlushExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#flush-Seven" aria-expanded="false" aria-controls="flush-Seven">
+                                    Click to Test
+                                </button>
+                            </h2>
+                            <div id="flush-Seven" class="accordion-collapse collapse"
+                                data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body testing-line">
+
+                                    <div class="PayloadDeco" id="GetACStatbyUniqueIDfields">
+
+                                        <section>
+                                            <p class="mt-3"><b>API Key<i class="fa-solid fa-star"></i></b></p>
+                                            <form><input type="password" placeholder="Enter your API Key" size="50"
+                                                    id="GetACStatbyUniqueIDAPIKey"
+                                                    value="0A576331-86D6-4E0F-9915-F73AD37301CD"></form>
+                                        </section>
+
+
+                                        <section>
+                                            <p class="mt-3"><b>Client Unique Id<i class="fa-solid fa-star"></i></b> </p>
+
+                                            <input type="text" placeholder="Enter Client Unique Id"
+                                                value="8400065F56C9440EAAB0FAC5C74F3AD1" size="50"
+                                                id="GetACStatbyUniqueIDNumber">
+                                        </section>
+
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-3 responseArea" id="GetACStatbyUniqueIDResultArea"></div>
+                <!-- sumbit button// -->
+                <div>
+                    <div>
+                        <button class="submitBtn" id="GetACStatbyUniqueIDSubmit">Submit</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+            integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+            crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"
+            integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS"
+            crossorigin="anonymous"></script>
+        <script src="test.js"></script>
 </body>
 
 </html>

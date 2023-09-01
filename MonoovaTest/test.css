@@ -6,8 +6,9 @@ body{
     margin: 0;
     color:white;
     background-color: white;
-
 }
+
+
 
 
 .imagelogo{
@@ -84,13 +85,17 @@ body{
 
 .responseBody{
     color: rgb(160, 251, 170);
-    border: 2px solid black;
-    background-color: rgb(17, 23, 26);
-    width: 700px;
-    padding: 0px 10px 20px 20px;  
+    width: 48.5em;
+    /* border: 2px solid black;
+    background-color: rgb(17, 23, 26); */
+    background-image: url(https://assets-global.website-files.com/647084263cf6196de949920f/647084263cf6196de9499292_monoova_desktop_home_hero.png);
+   background-size: cover;
     margin-top: 2em;
-   
- 
+    padding-left: 7em;
+}
+
+.flexresponseBody{
+    position:relative;
 }
 
 
@@ -130,7 +135,8 @@ body{
 }
  body span{
     background: #624cab;
-    padding: 4px 7px;
+    
+    padding: 2px 7px;
     border-radius: 10px;
 }
 
@@ -174,3 +180,12 @@ div.PaymentRailTabs button:hover{
     border-top: none;
 }
 
+.ReporV6twidth{
+    width:2000px;
+    color: white;
+    padding:15px 0px;
+    color: rgb(160, 251, 170);
+    background-image: url(https://assets-global.website-files.com/647084263cf6196de949920f/647084263cf6196de9499292_monoova_desktop_home_hero.png);
+    background-size: cover;
+  
+}
